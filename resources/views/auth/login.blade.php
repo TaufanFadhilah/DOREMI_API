@@ -67,7 +67,7 @@
                             <div class="col-md-6 offset-md-4">
                               <a href="{{ url('/auth/github') }}" class="btn btn-github"><i class="fa fa-facebook"></i> Github</a>
                                 <a href="{{ url('/auth/twitter') }}" class="btn btn-twitter"><i class="fa fa-twitter"></i> Twitter</a>
-                                <a href="{{ url('/auth/linkedin') }}" class="btn btn-linkedin"><i class="fa fa-linkedin"></i> Linkedin</a>
+                                <a href="{{ url('/auth/google') }}" class="btn btn-google"><i class="fa fa-linkedin"></i> Google</a>
                             </div>
                         </div>
 
