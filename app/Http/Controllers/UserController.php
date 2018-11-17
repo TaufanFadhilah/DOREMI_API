@@ -25,7 +25,8 @@ class UserController extends Controller
         if(Auth::attempt(['email' => request('email'), 'password' => request('password')])){
             $user = Auth::user();
             $success['token'] =  $user->createToken('nApp')->accessToken;
-            return response()->json(['success' => $success], $this->successStatus);
+            $user['token'] = $success['token'];
+            return response()->json(['success' => $user], $this->successStatus);
         }
         else{
             return response()->json(['error'=>'Unauthorised'], 401);
@@ -37,20 +38,20 @@ class UserController extends Controller
             'name' => 'required',
             'email' => 'required|email',
             'password' => 'required',
-            'phone' => 'required',
-            'address' => 'required',
-            'avatar' => 'required|image',
+            // 'phone' => 'required',
+            // 'address' => 'required',
+            // 'avatar' => 'required|image',
         ]);
 
         if ($validator->fails()) {
             return response()->json(['error'=>$validator->errors()], 401);
         }
 
-        $avatar = Storage::disk('public')->put('avatars', $request->avatar);
+        // $avatar = Storage::disk('public')->put('avatars', $request->avatar);
 
         $input = $request->all();
         $input['password'] = bcrypt($input['password']);
-        $input['avatar'] = $avatar;
+        // $input['avatar'] = $avatar;
         $user = User::create($input);
 
         $client = \Laravel\Passport\Client::where('password_client', 1)->first();

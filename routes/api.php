@@ -41,3 +41,8 @@ Route::group(['middleware' => 'auth:api'], function(){
   // get history logged user
   Route::get('history', 'UserController@getHistory');
 });
+
+
+// OAUTH
+Route::get('auth/{provider}', 'Auth\AuthController@redirectToProvider');
+Route::get('auth/{provider}/callback', 'Auth\AuthController@handleProviderCallback');
