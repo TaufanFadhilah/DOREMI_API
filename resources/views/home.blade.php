@@ -3,9 +3,9 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-12">
             <div class="card">
-                <div class="card-header">Dashboard</div>
+                <div class="card-header" style="background-color: #cb202d; color: white">Your Balance: Rp. {{ Auth::user()->balance }}</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -27,10 +27,11 @@
                           </fieldset>
                         </form>
                       </div>
+                      @else
+                      <div id="app">
+                        <restaurant-component />
+                      </div>
                     @endif
-                    <div id='app'>
-
-                    </div>
                 </div>
             </div>
         </div>
