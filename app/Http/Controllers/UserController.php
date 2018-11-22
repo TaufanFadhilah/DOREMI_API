@@ -90,11 +90,11 @@ class UserController extends Controller
       $user->balance += $request->amount;
       $user->save();
 
-      Transaction::create([
-        'user_id' => Auth::user()->id,
-        'amount' => $request->amount,
-        'status' => 'debit'
-      ]);
+      // Transaction::create([
+      //   'user_id' => Auth::user()->id,
+      //   'amount' => $request->amount,
+      //   'status' => 'debit'
+      // ]);
 
       return response()->json(['data' => [
         'status' => 'success'
@@ -119,5 +119,13 @@ class UserController extends Controller
     public function getHistory(){
       $transactions = Transaction::where('user_id', Auth::user()->id)->get();
       return response()->json(['data' => $transactions]);
+    }
+
+    public function setPassword(Request $request)
+    {
+      $user = User::find(Auth::user()->id);
+      $user->password = bcrypt($request->password);
+      $user->save();
+      return redirect(route('home'));
     }
 }

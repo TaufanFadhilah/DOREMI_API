@@ -20,5 +20,5 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('auth/{provider}', 'Auth\AuthController@redirectToProvider');
 Route::get('auth/{provider}/callback', 'Auth\AuthController@handleProviderCallback');
-
+Route::post('setPassword', 'UserController@setPassword')->name('setPassword');
 Route::get('zomato', 'ZomatoController@getCity');
